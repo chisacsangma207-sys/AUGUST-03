@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>For You ❤️</title>
+
+<style>
+body{
+    text-align:center;
+    font-family:Arial;
+    background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+    height:100vh;
+    overflow:hidden;
+}
+
+h1{
+    margin-top:50px;
+}
+
+button{
+    padding:15px 30px;
+    font-size:20px;
+    margin:15px;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+    position:relative;
+    z-index:999;
+}
+
+#yesBtn{ background:#ff4081; color:white; }
+#noBtn{ background:#555; color:white; }
+
+#photo{
+    display:none;
+    width:260px;
+    border-radius:20px;
+    margin-top:20px;
+    box-shadow:0 0 20px rgba(0,0,0,0.4);
+}
+
+.confetti{
+    position:fixed;
+    width:8px;
+    height:8px;
+    background:red;
+    top:-10px;
+    animation:fall linear forwards;
+}
+
+@keyframes fall{
+    to{
+        transform:translateY(100vh) rotate(720deg);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<h1>Will you be my Valentine, August? ❤️</h1>
+
+<button id="yesBtn" onclick="accept()">YES 💖</button>
+<button id="noBtn" onclick="run()">NO 😜</button>
+
+<br>
+<img id="photo" src="august.jpg">
+
+<audio id="music">
+  <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+function accept(){
+
+    document.querySelector("h1").innerHTML =
+    "💖 HERE'S TO US, LOVE, LAUGHTER, AND A LIFETIME OF GRAPES 💖 🎉🥳";
+
+    document.getElementById("photo").style.display="block";
+
+    document.getElementById("music").play();
+
+    confettiBlast();
+}
+
+function run(){
+    let btn=document.getElementById("noBtn");
+
+    btn.style.position="absolute";
+    btn.style.left=Math.random()*80+"vw";
+    btn.style.top=Math.random()*80+"vh";
+}
+
+function confettiBlast(){
+
+    for(let i=0;i<120;i++){
+        let c=document.createElement("div");
+        c.className="confetti";
+
+        c.style.left=Math.random()*100+"vw";
+        c.style.animationDuration=(Math.random()*3+2)+"s";
+        c.style.background=
+            "hsl(" + Math.random()*360 + ",100%,50%)";
+
+        document.body.appendChild(c);
+
+        setTimeout(()=>c.remove(),5000);
+    }
+}
+
+</script>
+
+</body>
+</html>
